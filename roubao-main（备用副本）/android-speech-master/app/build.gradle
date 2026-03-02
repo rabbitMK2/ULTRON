@@ -1,0 +1,69 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.example.speechapp'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.speechapp"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        // 解决 Guava 和 listenablefuture 的冲突
+        // guava 32.1.1-jre 已经包含了 listenablefuture 的功能
+        force 'com.google.guava:guava:32.1.1-jre'
+        exclude group: 'com.google.guava', module: 'listenablefuture'
+        
+        // 强制使用兼容 compileSdk 33 的 androidx.activity 版本
+        force 'androidx.activity:activity:1.7.2'
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    
+    // gotev android-speech library
+    implementation 'net.gotev:speech:1.6.2'
+    
+    // Alibaba DashScope SDK
+    implementation('com.alibaba:dashscope-sdk-java:2.12.0') {
+        // 确保使用兼容的 Guava 版本
+        exclude group: 'com.google.guava', module: 'listenablefuture'
+    }
+    
+    // 显式添加 Guava（已包含 listenablefuture 功能）
+    implementation 'com.google.guava:guava:32.1.1-jre'
+    
+    // Mobiagent 需要的依赖
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    // 使用较低版本的 Jackson 以避免 Jetifier 兼容性问题
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.5'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.5'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.5'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+}
+

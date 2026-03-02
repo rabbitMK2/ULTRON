@@ -1,0 +1,23 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        // 使用国内镜像源（用于下载Android Gradle Plugin）
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        // 备用源
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // 升级到 8.1.4 以修复 JDK 工具链问题（支持更好的 Java 21 兼容性）
+        classpath 'com.android.tools.build:gradle:8.1.4'
+    }
+}
+
+// 注意：在Gradle 8.5+中，如果settings.gradle配置了dependencyResolutionManagement，
+// 则不能在allprojects中定义repositories，需要在settings.gradle中统一配置
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
