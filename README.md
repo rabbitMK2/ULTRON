@@ -37,3 +37,5 @@ Android 端独立运行与安全控制
 作为日常 个人助理 / 数字秘书 使用（记事、提醒、总结聊天记录等）。
 作为开发者的 移动端 AI 开发助手（生成代码、查文档、搭建前端 Demo 等）。
 作为个人知识与偏好高度绑定的 长期 AI 伙伴，在多设备、多场景中保持一致的记忆与风格。
+<img width="161" height="357" alt="image" src="https://github.com/user-attachments/assets/15d899f6-47a8-4c05-82fa-34e8df1dcf1a" />
+<img width="157" height="349" alt="image" src="https://github.com/user-attachments/assets/9fa40684-39de-4cdd-b56a-6a1773131336" />
